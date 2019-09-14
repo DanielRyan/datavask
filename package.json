@@ -5,6 +5,7 @@
   "main": "",
   "scripts": {
     "build": "tsc",
+    "test:ci": "jest --coverage",
     "test:watch": "jest --watchAll --coverage"
   },
   "author": "",
@@ -18,6 +19,7 @@
     "babel-jest": "^24.9.0",
     "jest": "^24.9.0",
     "prettier": "1.18.2",
+    "ts-jest": "^24.1.0",
     "typescript": "^3.6.3"
   }
 }
