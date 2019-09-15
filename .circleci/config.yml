@@ -26,6 +26,17 @@ jobs:
           paths:
             - /home/circleci/.npm
 
+  lint:
+    working_directory:
+    docker: *docker
+    steps:
+      - checkout
+      - *restore_cache
+      - *run_npm_i
+      - run:
+          name: Lint
+          command: npm run lint:ci
+
   build:
     working_directory:
     docker: *docker
@@ -53,9 +64,12 @@ workflows:
   commit:
     jobs:
       - setup
-      - build:
+      - lint:
           requires:
             - setup
+      - build:
+          requires:
+            - lint
       - test:
           requires:
             - build

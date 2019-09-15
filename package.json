@@ -8,7 +8,7 @@
     "test:ci": "jest --coverage",
     "test:watch": "jest --watchAll --coverage",
     "lint": "eslint **/*.ts",
-    "test:watch": "jest --watchAll --coverage"
+    "lint:ci": "eslint '**/*.ts' --max-warnings 0"
   },
   "author": "",
   "license": "",
