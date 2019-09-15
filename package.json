@@ -6,6 +6,8 @@
   "scripts": {
     "build": "tsc",
     "test:ci": "jest --coverage",
+    "test:watch": "jest --watchAll --coverage",
+    "lint": "eslint **/*.ts",
     "test:watch": "jest --watchAll --coverage"
   },
   "author": "",
@@ -16,9 +18,14 @@
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-typescript": "^7.6.0",
     "@types/jest": "^24.0.18",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
     "babel-jest": "^24.9.0",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "jest": "^24.9.0",
-    "prettier": "1.18.2",
+    "prettier": "^1.18.2",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.3"
   }
