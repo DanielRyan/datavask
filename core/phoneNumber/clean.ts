@@ -1,4 +1,4 @@
-export function clean(phoneNumber: string) {
+export function clean(phoneNumber: string): string {
   const cleaned = phoneNumber
     // Remove leading and trailing spaces.
     .trim()

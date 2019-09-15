@@ -1,4 +1,4 @@
-export function removeCountryCode(phoneNumber: string) {
+export function removeCountryCode(phoneNumber: string): string {
   // ?: Does the phone number contain country code?
   if (!phoneNumber.startsWith('+')) {
     // -> No, don't do anything with the phone number.

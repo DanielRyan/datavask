@@ -13,7 +13,7 @@ export class DuplicateMap<T> {
    * @param cleanedValue The string after processing is done.
    * @param info Extra data that can better identify the duplicate values.
    */
-  public push(originalValue: string, cleanedValue: string, info: T) {
+  public push(originalValue: string, cleanedValue: string, info: T): State {
     const entry: Entry<T> = {
       info,
       value: {
@@ -51,14 +51,14 @@ export class DuplicateMap<T> {
   /**
    * Get all unique values.
    */
-  public get values() {
+  public get values(): Entry<T>[] {
     return [...this.cleanedValues.values()];
   }
 
   /**
    * Get all duplicate values.
    */
-  public get duplicates() {
+  public get duplicates(): [string, Entry<T>[]][] {
     return [...this.duplicateValues.entries()];
   }
 }
