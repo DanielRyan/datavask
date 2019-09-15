@@ -1,23 +1,61 @@
 version: 2
+
+aliases:
+  - &docker
+    - image: circleci/node:8
+
+  - &restore_cache
+    restore_cache:
+      key: npm-cache-v1-{{ checksum "package-lock.json" }}
+
+  - &run_npm_i
+    run:
+      name: Install Dependencies
+      command: npm ci
+
 jobs:
-  build:
+  setup:
     working_directory:
-    docker:
-      - image: circleci/node:8
+    docker: *docker
     steps:
       - checkout
-      - restore_cache:
-          key: npm-cache-v1-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install Dependencies
-          command: npm ci
+      - *restore_cache
+      - *run_npm_i
       - save_cache:
           key: npm-cache-v1-{{ checksum "package-lock.json" }}
           paths:
             - /home/circleci/.npm
+
+  build:
+    working_directory:
+    docker: *docker
+    steps:
+      - checkout
+      - *restore_cache
+      - *run_npm_i
       - run:
           name: Build App
           command: npm run build
+
+  test:
+    working_directory:
+    docker: *docker
+    steps:
+      - checkout
+      - *restore_cache
+      - *run_npm_i
       - run:
           name: Run Tests
           command: npm run test:ci
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - setup
+      - build:
+          requires:
+            - setup
+      - test:
+          requires:
+            - build
